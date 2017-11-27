@@ -2,8 +2,12 @@ grammar Gini;
 
 f : ID;
 
+
+IMPORT      :   'import'    ;
+
 ID  :   IdStart IdContinue*
     ;
+
 
 /// id_start     ::=  <all characters in general categories Lu, Ll, Lt, Lm, Lo, Nl, the underscore, and characters with the Other_ID_Start property>
 fragment IdStart
