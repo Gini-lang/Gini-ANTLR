@@ -541,3 +541,11 @@ fragment IdContinue
     | [\uFF10-\uFF19]
     | '\uFF3F'
     ;
+
+NL  :   '\r\n'
+    |   '\r'
+    |   '\n'
+    ;
+
+WS  :   [\f\t ] -> skip
+    ;
