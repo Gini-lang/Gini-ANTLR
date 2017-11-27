@@ -1,0 +1,44 @@
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.1.61'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'kotlin'
+
+sourceCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.antlr/antlr4-runtime
+    compile "org.antlr:antlr4-runtime:4.7"
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', 'src/main/gen']
+        }
+
+        kotlin {
+            srcDirs = ['src/main/java', 'src/main/gen', 'src/main/kotlin']
+        }
+    }
+}
