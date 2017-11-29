@@ -17,7 +17,9 @@ public class GiniParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		IMPORT=1, ID=2, NL=3, WS=4;
+		IMPORT=1, ID=2, DecimalLiteral=3, HexLiteral=4, OctLiteral=5, BinaryLiteral=6, 
+		FloatLiteral=7, HexFloatLiteral=8, BoolLiteral=9, CharLiteral=10, StringLiteral=11, 
+		NullLiteral=12, NL=13, WS=14;
 	public static final int
 		RULE_f = 0;
 	public static final String[] ruleNames = {
@@ -25,10 +27,13 @@ public class GiniParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'import'"
+		null, "'import'", null, null, null, null, null, null, null, null, null, 
+		null, "'null'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "IMPORT", "ID", "NL", "WS"
+		null, "IMPORT", "ID", "DecimalLiteral", "HexLiteral", "OctLiteral", "BinaryLiteral", 
+		"FloatLiteral", "HexFloatLiteral", "BoolLiteral", "CharLiteral", "StringLiteral", 
+		"NullLiteral", "NL", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -122,8 +127,8 @@ public class GiniParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\6\7\4\2\t\2\3\2\3"+
-		"\2\3\2\2\2\3\2\2\2\2\5\2\4\3\2\2\2\4\5\7\4\2\2\5\3\3\2\2\2\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20\7\4\2\t\2\3\2"+
+		"\3\2\3\2\2\2\3\2\2\2\2\5\2\4\3\2\2\2\4\5\7\4\2\2\5\3\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

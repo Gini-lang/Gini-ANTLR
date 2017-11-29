@@ -9,6 +9,53 @@ ID  :   IdStart IdContinue*
     ;
 
 
+// Literals
+
+DecimalLiteral:    ('0' | [1-9] (Digits? | '_'+ Digits)) [lL]?;
+HexLiteral:        '0' [xX] [0-9a-fA-F] ([0-9a-fA-F_]* [0-9a-fA-F])? [lL]?;
+OctLiteral:        '0' '_'* [0-7] ([0-7_]* [0-7])? [lL]?;
+BinaryLiteral:     '0' [bB] [01] ([01_]* [01])? [lL]?;
+
+FloatLiteral:      (Digits '.' Digits? | '.' Digits) ExponentPart? [fFdD]?
+             |       Digits (ExponentPart [fFdD]? | [fFdD])
+             ;
+
+HexFloatLiteral:  '0' [xX] (HexDigits '.'? | HexDigits? '.' HexDigits) [pP] [+-]? Digits [fFdD]?;
+
+BoolLiteral:       'true'
+            |       'false'
+            ;
+
+CharLiteral:       '\'' (~['\\\r\n] | EscapeSequence) '\'';
+
+StringLiteral:     '"' (~["\\\r\n] | EscapeSequence)* '"';
+
+NullLiteral:       'null';
+
+// Fragment rules
+
+fragment ExponentPart
+    : [eE] [+-]? Digits
+    ;
+
+fragment EscapeSequence
+    : '\\' [btnfr"'\\]
+    | '\\' ([0-3]? [0-7])? [0-7]
+    | '\\' 'u'+ HexDigit HexDigit HexDigit HexDigit
+    ;
+
+fragment HexDigits
+    : HexDigit ((HexDigit | '_')* HexDigit)?
+    ;
+
+fragment HexDigit
+    : [0-9a-fA-F]
+    ;
+
+fragment Digits
+    : [0-9] ([0-9_]* [0-9])?
+    ;
+
 /// id_start     ::=  <all characters in general categories Lu, Ll, Lt, Lm, Lo, Nl, the underscore, and characters with the Other_ID_Start property>
 fragment IdStart
     : '_'
