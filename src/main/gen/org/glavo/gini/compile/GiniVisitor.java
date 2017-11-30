@@ -1,4 +1,4 @@
-// Generated from /home/glavo/IdeaProjects/Gini/src/main/antlr4/Gini.g4 by ANTLR 4.7
+// Generated from C:/Users/Glavo/IdeaProjects/Gini/src/main/antlr4\Gini.g4 by ANTLR 4.7
 package org.glavo.gini.compile;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -11,9 +11,9 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface GiniVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link GiniParser#f}.
+	 * Visit a parse tree produced by {@link GiniParser#literal}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitF(GiniParser.FContext ctx);
+	T visitLiteral(GiniParser.LiteralContext ctx);
 }

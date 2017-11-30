@@ -1,4 +1,4 @@
-// Generated from /home/glavo/IdeaProjects/Gini/src/main/antlr4/Gini.g4 by ANTLR 4.7
+// Generated from C:/Users/Glavo/IdeaProjects/Gini/src/main/antlr4\Gini.g4 by ANTLR 4.7
 package org.glavo.gini.compile;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -17,5 +17,5 @@ public class GiniBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements G
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitF(GiniParser.FContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLiteral(GiniParser.LiteralContext ctx) { return visitChildren(ctx); }
 }

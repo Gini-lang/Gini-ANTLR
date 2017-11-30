@@ -1,4 +1,4 @@
-// Generated from /home/glavo/IdeaProjects/Gini/src/main/antlr4/Gini.g4 by ANTLR 4.7
+// Generated from C:/Users/Glavo/IdeaProjects/Gini/src/main/antlr4\Gini.g4 by ANTLR 4.7
 package org.glavo.gini.compile;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -16,13 +16,13 @@ public class GiniBaseListener implements GiniListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterF(GiniParser.FContext ctx) { }
+	@Override public void enterLiteral(GiniParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitF(GiniParser.FContext ctx) { }
+	@Override public void exitLiteral(GiniParser.LiteralContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

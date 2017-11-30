@@ -1,4 +1,4 @@
-// Generated from /home/glavo/IdeaProjects/Gini/src/main/antlr4/Gini.g4 by ANTLR 4.7
+// Generated from C:/Users/Glavo/IdeaProjects/Gini/src/main/antlr4\Gini.g4 by ANTLR 4.7
 package org.glavo.gini.compile;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -8,13 +8,13 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface GiniListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link GiniParser#f}.
+	 * Enter a parse tree produced by {@link GiniParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void enterF(GiniParser.FContext ctx);
+	void enterLiteral(GiniParser.LiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GiniParser#f}.
+	 * Exit a parse tree produced by {@link GiniParser#literal}.
 	 * @param ctx the parse tree
 	 */
-	void exitF(GiniParser.FContext ctx);
+	void exitLiteral(GiniParser.LiteralContext ctx);
 }

@@ -1,7 +1,17 @@
 grammar Gini;
 
-f : ID;
-
+literal
+    :   DecimalLiteral
+    |   HexLiteral
+    |   OctLiteral
+    |   BinaryLiteral
+    |   FloatLiteral
+    |   HexFloatLiteral
+    |   BoolLiteral
+    |   CharLiteral
+    |   StringLiteral
+    |   NullLiteral
+    ;
 
 IMPORT      :   'import'    ;
 
