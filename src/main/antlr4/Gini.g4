@@ -5,9 +5,6 @@ f : ID;
 
 IMPORT      :   'import'    ;
 
-ID  :   IdStart IdContinue*
-    ;
-
 
 // Literals
 
@@ -31,6 +28,11 @@ CharLiteral:       '\'' (~['\\\r\n] | EscapeSequence) '\'';
 StringLiteral:     '"' (~["\\\r\n] | EscapeSequence)* '"';
 
 NullLiteral:       'null';
+
+
+ID  :   IdStart IdContinue*
+    ;
+
 
 // Fragment rules
 
