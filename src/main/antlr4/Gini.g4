@@ -1,5 +1,161 @@
 grammar Gini;
 
+sourceFile
+    :   NL* statement* EOF
+    ;
+
+statement
+    :   (VAL | VAR)? (ID '=')+ expr NL* (SEMI NL*)?             #letStatement
+    |   IMPORT dottedName (NL | SEMI)+                          #importStatement
+    |   FROM dottedName IMPORT ('*' | ID) (NL | SEMI)+          #fromImportStatement
+    |   DEF NL* ID? NL* '(' NL* functionParameterList? NL* ')' NL* (COLON NL* functionReturnType NL*)? '->' NL* expr    #functionDefineStatement
+    |   expr NL* (SEMI NL*)?    #exprStatement
+    ;
+
+functionReturnType
+    :   expr5
+    |   expr6
+    |   expr7
+    |   expr8
+    |   expr9
+    |   expr10
+    |   expr11
+    |   expr12
+    |   expr13
+    |   expr14
+    |   expr15
+    |   expr16
+    ;
+
+dottedName
+    :   ID (NL* DOT NL* ID)*
+    ;
+
+expr
+    :   expr1
+    |   exprN
+    ;
+
+
+expr1
+    :   exprN (',' exprN)+
+    ;
+
+exprN
+    :   expr2
+    |   expr3
+    |   expr4
+    |   expr5
+    |   expr6
+    |   expr7
+    |   expr8
+    |   expr9
+    |   expr10
+    |   expr11
+    |   expr12
+    |   expr13
+    |   expr14
+    |   expr15
+    |   expr16
+    ;
+
+expr2
+    :   ifExpr
+    |   lambdaExpr
+    |   functionTypeExpr
+    ;
+
+
+
+ifExpr
+    :   IF LPAREN NL* expr NL* RPAREN NL* expr NL? (ELSE NL* expr)?
+    ;
+
+lambdaExpr
+    :   LAMBDA functionParameterList '->' exprN
+    ;
+
+functionParameterList
+    :   functionParameter (NL* COMMA NL* functionParameter)*
+    ;
+
+functionParameter
+    :   ID (COLON expr)?
+    ;
+
+functionTypeExpr
+    :   'none' //todo
+    ;
+
+expr3
+    :   expr4 (DOTDOT expr4)+
+    ;
+
+expr4
+    :   expr5 (COLON | AS) expr5
+    ;
+
+expr5
+    :   expr6 (OR expr6)+
+    ;
+
+expr6
+    :   expr7 (AND expr7)+
+    ;
+
+expr7
+    :   expr8 (BITOR expr8)+
+    ;
+
+expr8
+    :   expr9 (BITAND expr9)+
+    ;
+
+expr9
+    :   expr10 (EQUAL | NOTEQUAL) expr10
+    ;
+
+expr10
+    :   expr11 (compareOp expr11)+
+    ;
+
+compareOp   : LT | LE | GT | GE ;
+
+expr11
+    :   expr12 ('+' | '-' expr12)+
+    ;
+
+expr12
+    :   expr13 ('*' | '/' | '%' expr13)+
+    ;
+
+expr13
+    :   (expr14 ('**' | '^'))+ expr14
+    ;
+
+
+expr14
+    :   ('+' | '-' | '~')+ expr15
+    ;
+
+expr15
+    :   expr16 (DOT ID | '[' NL* functionArgumentList? NL* ']' | '(' NL* functionArgumentList? NL* ')')+
+    ;
+
+functionArgumentList
+    :   exprN (NL* COMMA NL* exprN)*
+    ;
+
+
+
+expr16
+    :   '(' expr ')'
+    |   '[' functionArgumentList? ']'
+    |   '{' NL* statement* '}'
+    |   literal
+    |   ID
+    ;
+
 literal
     :   DecimalLiteral
     |   HexLiteral
@@ -10,11 +166,21 @@ literal
     |   BoolLiteral
     |   CharLiteral
     |   StringLiteral
-    |   NullLiteral
+    |   NoneLiteral
     ;
 
-IMPORT      :   'import'    ;
 
+AS          :   'as';
+CLASS       :   'class';
+ELSE        :   'else';
+DEF         :   'def';
+FROM        :   'from';
+IF          :   'if';
+IMPORT      :   'import';
+LAMBDA      :   'lambda' | 'λ';
+RETURN      :   'return';
+VAL         :   'val';
+VAR         :   'var';
 
 // Literals
 
@@ -37,7 +203,7 @@ CharLiteral:       '\'' (~['\\\r\n] | EscapeSequence) '\'';
 
 StringLiteral:     '"' (~["\\\r\n] | EscapeSequence)* '"';
 
-NullLiteral:       'null';
+NoneLiteral:       'none';
 
 
 ID  :   IdStart IdContinue*
@@ -612,3 +778,59 @@ NL  :   '\r\n'
 
 WS  :   [\f\t ] -> skip
     ;
+
+ShebangLine
+    : '#!' ~[\u000A\u000D]* NL -> skip
+    ;
+
+LPAREN : '(';
+RPAREN : ')';
+LBRACE : '{';
+RBRACE : '}';
+LBRACK : '[';
+RBRACK : ']';
+SEMI : ';' | '；';
+COMMA : ',' | '，';
+DOT : '.';
+DOTDOT : '..';
+
+// §3.12 Operators
+
+ASSIGN : '=';
+GT : '>';
+LT : '<';
+BANG : '!';
+TILDE : '~';
+QUESTION : '?';
+COLON : ':' | '：';
+EQUAL : '==';
+LE : '<=';
+GE : '>=';
+NOTEQUAL : '!=';
+AND : '&&';
+OR : '||';
+INC : '++';
+DEC : '--';
+ADD : '+';
+SUB : '-';
+MUL : '*' | '×';
+MULMUL : '**' | '××';
+DIV : '/';
+BITAND : '&';
+BITOR : '|';
+CARET : '^';
+MOD : '%';
+ARROW : '->';
+COLONCOLON : '::' | '：：';
+
+ADD_ASSIGN : '+=';
+SUB_ASSIGN : '-=';
+MUL_ASSIGN : '*=';
+DIV_ASSIGN : '/=';
+AND_ASSIGN : '&=';
+OR_ASSIGN : '|=';
+XOR_ASSIGN : '^=';
+MOD_ASSIGN : '%=';
+//LSHIFT_ASSIGN : '<<=';
+//RSHIFT_ASSIGN : '>>=';
+//URSHIFT_ASSIGN : '>>>=';
